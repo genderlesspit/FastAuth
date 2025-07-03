@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Admin Consent Required • OAuth Server</title>
+    <meta name="description" content="Cross-tenant access requires administrative approval">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="container">
+        <hgroup>
+            <h1>👨‍💼 Admin Consent Required</h1>
+            <p>Cross-tenant access requires administrative approval</p>
+        </hgroup>
+        <nav>
+            <ul>
+                <li><a href="/" role="button" class="secondary">🏠 Home</a></li>
+                <li><a href="/debug" role="button" class="outline">🔧 Debug</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- ./ Header -->
+
+    <!-- Main -->
+    <main class="container">
+        <!-- Alert -->
+        <article>
+            <header>
+                <h2>⚠️ Administrator Action Required</h2>
+            </header>
+            <p>
+                For users from external organizations to access this application, an admin from the target organization must grant consent.
+            </p>
+        </article>
+
+        <!-- Information Grid -->
+        <div class="grid">
+            <article>
+                <header>
+                    <h3>🔐 What is Admin Consent?</h3>
+                </header>
+                <p>
+                    Admin consent allows applications to access organizational data across different Microsoft 365 tenants.
+                    This is required for multi-tenant scenarios.
+                </p>
+            </article>
+
+            <article>
+                <header>
+                    <h3>📋 Required Permissions</h3>
+                </header>
+                <ul>
+                    <li><strong>User.Read:</strong> Basic profile information</li>
+                    <li><strong>Mail.Read:</strong> Read user emails</li>
+                    <li><strong>Files.Read:</strong> Access OneDrive files</li>
+                </ul>
+            </article>
+        </div>
+
+        <!-- Admin Consent URL Section -->
+        <article>
+            <header>
+                <h3>🔗 Admin Consent URL</h3>
+            </header>
+            <p>
+                <code>{{ admin_consent_url }}</code>
+            </p>
+            <div class="grid">
+                <a href="{{ admin_consent_url }}" target="_blank" role="button">🚀 Grant Admin Consent</a>
+                <button onclick="copyToClipboard('{{ admin_consent_url }}')" class="secondary">📋 Copy URL</button>
+            </div>
+        </article>
+
+        <!-- Instructions -->
+        <article>
+            <header>
+                <h3>📖 Instructions for Administrators</h3>
+            </header>
+            <ol>
+                <li>Click the "Grant Admin Consent" button above</li>
+                <li>Sign in with your administrator account</li>
+                <li>Review the requested permissions</li>
+                <li>Click "Accept" to grant consent for your organization</li>
+                <li>Users from your organization can now authenticate</li>
+            </ol>
+        </article>
+
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="/" role="button" class="outline">🏠 Back to Login</a></li>
+                <li><a href="/debug" role="button" class="outline secondary">🔧 Debug Info</a></li>
+            </ul>
+        </nav>
+    </main>
+    <!-- ./ Main -->
+
+    <!-- Footer -->
+    <footer class="container">
+        <small>
+            Admin consent is a one-time setup for each organization •
+            Powered by <a href="https://docs.microsoft.com/en-us/azure/active-directory/">Microsoft Identity Platform</a>
+        </small>
+    </footer>
+    <!-- ./ Footer -->
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Admin consent URL copied to clipboard!');
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
