@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Debug Information • OAuth Server</title>
+    <meta name="description" content="Technical details for troubleshooting OAuth flows">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="container">
+        <hgroup>
+            <h1>🔧 Debug Information</h1>
+            <p>Technical details for troubleshooting OAuth flows</p>
+        </hgroup>
+        <nav>
+            <ul>
+                <li><a href="/" role="button" class="secondary">🏠 Home</a></li>
+                <li><a href="/admin-consent" role="button" class="outline">👨‍💼 Admin Consent</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- ./ Header -->
+
+    <!-- Main -->
+    <main class="container">
+        <!-- Server Status -->
+        <article>
+            <header>
+                <h2>🚀 Server Status</h2>
+            </header>
+            <div class="grid">
+                <div>
+                    <strong>Status:</strong> <mark>Running</mark>
+                </div>
+                <div>
+                    <strong>Uptime:</strong> <span id="uptime"></span>
+                </div>
+                <div>
+                    <strong>Last Updated:</strong> <span id="last-updated"></span>
+                </div>
+            </div>
+        </article>
+
+        <!-- PKCE Challenge Status -->
+        <div class="grid">
+            <article>
+                <header>
+                    <h3>🔍 PKCE Challenge Status</h3>
+                </header>
+                <ul>
+                    <li><strong>Stored Challenges:</strong> {{ stored_challenges }}</li>
+                    <li><strong>Active States:</strong> {{ challenge_states|length }}</li>
+                    <li><strong>Challenge Method:</strong> S256</li>
+                </ul>
+            </article>
+
+            <article>
+                <header>
+                    <h3>🆔 Challenge States</h3>
+                </header>
+                {% if challenge_states %}
+                <ul>
+                    {% for state in challenge_states %}
+                    <li><code>{{ state }}</code></li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p><em>No active challenge states</em></p>
+                {% endif %}
+            </article>
+        </div>
+
+        <!-- Server Configuration -->
+        <section>
+            <h3>⚙️ Server Configuration</h3>
+            <div class="grid">
+                <article>
+                    <header>
+                        <h4>🌐 Endpoints</h4>
+                    </header>
+                    <div class="overflow-auto">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Endpoint</th>
+                                    <th scope="col">Method</th>
+                                    <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">/</th>
+                                    <td>GET</td>
+                                    <td>Start OAuth flow</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">/callback</th>
+                                    <td>GET</td>
+                                    <td>Handle OAuth callback</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">/dashboard</th>
+                                    <td>GET</td>
+                                    <td>User dashboard</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">/logout</th>
+                                    <td>GET</td>
+                                    <td>Logout and clear tokens</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">/debug</th>
+                                    <td>GET</td>
+                                    <td>Debug information</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <article>
+                    <header>
+                        <h4>🔐 Security Settings</h4>
+                    </header>
+                    <ul>
+                        <li><strong>PKCE:</strong> <mark>Enabled</mark></li>
+                        <li><strong>Multi-Tenant:</strong> <mark>Enabled</mark></li>
+                        <li><strong>Redirect URI:</strong> <code>http://localhost:8080/callback</code></li>
+                        <li><strong>Scopes:</strong> <code>User.Read Mail.Read Files.Read offline_access</code></li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- OAuth Configuration -->
+        <article>
+            <header>
+                <h3>🔑 OAuth Configuration</h3>
+            </header>
+            <details>
+                <summary>View OAuth Settings</summary>
+                <div class="grid">
+                    <div>
+                        <strong>Authorization Endpoint:</strong><br>
+                        <code>https://login.microsoftonline.com/common/oauth2/v2.0/authorize</code>
+                    </div>
+                    <div>
+                        <strong>Token Endpoint:</strong><br>
+                        <code>https://login.microsoftonline.com/common/oauth2/v2.0/token</code>
+                    </div>
+                </div>
+            </details>
+        </article>
+
+        <!-- Raw Debug Data -->
+        <article>
+            <header>
+                <h3>📋 Raw Debug Data</h3>
+            </header>
+            <details>
+                <summary>View Raw JSON Data</summary>
+                <pre><code>{{ debug_json }}</code></pre>
+            </details>
+        </article>
+
+        <!-- System Information -->
+        <article>
+            <header>
+                <h3>💻 System Information</h3>
+            </header>
+            <div class="grid">
+                <div>
+                    <strong>Server:</strong> FastAPI + Uvicorn
+                </div>
+                <div>
+                    <strong>Python:</strong> 3.x
+                </div>
+                <div>
+                    <strong>Host:</strong> localhost:8080
+                </div>
+                <div>
+                    <strong>Environment:</strong> Development
+                </div>
+            </div>
+        </article>
+
+        <!-- Test Endpoints -->
+        <section>
+            <h3>🧪 Test Endpoints</h3>
+            <div class="grid">
+                <a href="/debug" role="button" class="outline">🔄 Refresh Debug</a>
+                <a href="/styles.css" role="button" class="outline secondary" target="_blank">🎨 View CSS</a>
+                <a href="/profile" role="button" class="outline secondary">👤 Test Profile</a>
+                <a href="/emails" role="button" class="outline secondary">📧 Test Emails</a>
+            </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <article>
+            <header>
+                <h3>🔍 Troubleshooting</h3>
+            </header>
+            <details>
+                <summary>Common Issues</summary>
+                <ul>
+                    <li><strong>No PKCE challenges:</strong> Try starting a new OAuth flow</li>
+                    <li><strong>Invalid state:</strong> Check if challenges are being consumed properly</li>
+                    <li><strong>Token expired:</strong> Refresh tokens or re-authenticate</li>
+                    <li><strong>Permission denied:</strong> Check admin consent settings</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Debug Steps</summary>
+                <ol>
+                    <li>Check server logs for detailed error messages</li>
+                    <li>Verify PKCE challenge generation and consumption</li>
+                    <li>Test OAuth flow with different browsers</li>
+                    <li>Check network connectivity to Microsoft endpoints</li>
+                    <li>Verify application registration in Azure AD</li>
+                </ol>
+            </details>
+        </article>
+
+        <!-- Actions -->
+        <nav>
+            <ul>
+                <li><a href="/" role="button" class="outline">🏠 Back to Home</a></li>
+                <li><a href="/debug" role="button" class="outline secondary">🔄 Refresh Debug</a></li>
+                <li><a href="/admin-consent" role="button" class="outline secondary">👨‍💼 Admin Consent</a></li>
+            </ul>
+        </nav>
+    </main>
+    <!-- ./ Main -->
+
+    <!-- Footer -->
+    <footer class="container">
+        <small>
+            Debug information updates in real-time •
+            <a href="/debug">Refresh</a> •
+            <a href="/">Home</a> •
+            Last updated: <span id="footer-timestamp"></span>
+        </small>
+    </footer>
+    <!-- ./ Footer -->
+
+    <script>
+        // Set timestamps
+        const now = new Date();
+        document.getElementById('uptime').textContent = 'Active';
+        document.getElementById('last-updated').textContent = now.toLocaleString();
+        document.getElementById('footer-timestamp').textContent = now.toLocaleTimeString();
+
+        // Auto-refresh every 30 seconds
+        setTimeout(() => {
+            location.reload();
+        }, 30000);
+    </script>
+</body>
+</html>

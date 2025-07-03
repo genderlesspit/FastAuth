@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>OAuth Authentication • Microsoft Identity</title>
+    <meta name="description" content="Secure authentication with Microsoft Identity Platform">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="container">
+        <hgroup>
+            <h1>🔐 Multi-Tenant OAuth Server</h1>
+            <p>Secure authentication with Microsoft Identity Platform</p>
+        </hgroup>
+        <nav>
+            <ul>
+                <li>
+                    <details class="dropdown">
+                        <summary role="button" class="secondary">Actions</summary>
+                        <ul>
+                            <li><a href="/admin-consent">👨‍💼 Admin Consent</a></li>
+                            <li><a href="/debug">🔧 Debug Info</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- ./ Header -->
+
+    <!-- Main -->
+    <main class="container">
+        <!-- Welcome Section -->
+        <section>
+            <hgroup>
+                <h2>🚀 Welcome to OAuth Authentication</h2>
+                <p>Connect securely with your Microsoft account across organizations</p>
+            </hgroup>
+
+            <!-- Primary Action -->
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="/" role="button" style="font-size: 1.2rem; padding: 1rem 2rem;">
+                    🔑 Sign In with Microsoft
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <div class="grid">
+            <article>
+                <header>
+                    <h3>🛡️ Security Features</h3>
+                </header>
+                <ul>
+                    <li><strong>PKCE:</strong> Proof Key for Code Exchange</li>
+                    <li><strong>Multi-Tenant:</strong> Cross-organization access</li>
+                    <li><strong>OAuth 2.0:</strong> Industry standard security</li>
+                </ul>
+            </article>
+
+            <article>
+                <header>
+                    <h3>📋 Permissions</h3>
+                </header>
+                <ul>
+                    <li><strong>Profile:</strong> View basic profile information</li>
+                    <li><strong>Mail:</strong> Read email messages</li>
+                    <li><strong>Files:</strong> Access OneDrive files</li>
+                </ul>
+            </article>
+
+            <article>
+                <header>
+                    <h3>🎯 Scopes</h3>
+                </header>
+                <ul>
+                    <li><code>User.Read</code></li>
+                    <li><code>Mail.Read</code></li>
+                    <li><code>Files.Read</code></li>
+                    <li><code>offline_access</code></li>
+                </ul>
+            </article>
+        </div>
+
+        <!-- Quick Actions -->
+        <section>
+            <h3>Quick Actions</h3>
+            <div class="grid">
+                <a href="/" role="button">🔑 Sign In</a>
+                <a href="/admin-consent" role="button" class="secondary">👨‍💼 Admin Consent</a>
+                <a href="/debug" role="button" class="outline">🔧 Debug Info</a>
+            </div>
+        </section>
+
+        <!-- Information -->
+        <article>
+            <header>
+                <h3>🔒 How It Works</h3>
+            </header>
+            <ol>
+                <li>Click "Sign In with Microsoft" to start the authentication process</li>
+                <li>You'll be redirected to Microsoft's secure login page</li>
+                <li>Enter your credentials and grant permissions</li>
+                <li>You'll be redirected back with secure access tokens</li>
+                <li>Access your profile, emails, and files through the dashboard</li>
+            </ol>
+        </article>
+    </main>
+    <!-- ./ Main -->
+
+    <!-- Footer -->
+    <footer class="container">
+        <small>
+            Powered by Microsoft Identity Platform • Secure • Modern • Multi-Tenant •
+            <a href="https://docs.microsoft.com/en-us/azure/active-directory/">Learn More</a>
+        </small>
+    </footer>
+    <!-- ./ Footer -->
+</body>
+</html>

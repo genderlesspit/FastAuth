@@ -1,0 +1,53 @@
+<!-- login.html - Main login page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Authentication - Microsoft Identity</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔐</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Multi-Tenant OAuth Server</h1>
+            <p>Secure authentication with Microsoft Identity Platform</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    🚀 Welcome to OAuth Authentication
+                </h2>
+                <p class="card-subtitle">Connect securely with your Microsoft account across organizations</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>🛡️ Security Features</h3>
+                    <p><strong>PKCE:</strong> Proof Key for Code Exchange</p>
+                    <p><strong>Multi-Tenant:</strong> Cross-organization access</p>
+                    <p><strong>Scopes:</strong> User.Read, Mail.Read, Files.Read</p>
+                </div>
+                <div class="info-item">
+                    <h3>📋 Permissions</h3>
+                    <p><strong>Profile:</strong> View basic profile information</p>
+                    <p><strong>Mail:</strong> Read email messages</p>
+                    <p><strong>Files:</strong> Access OneDrive files</p>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <a href="/" class="btn">🔑 Sign In with Microsoft</a>
+                <a href="/admin-consent" class="btn btn-secondary">👨‍💼 Admin Consent</a>
+                <a href="/debug" class="btn btn-secondary">🔧 Debug Info</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Powered by Microsoft Identity Platform • Secure • Modern • Multi-Tenant</p>
+        </div>
+    </div>
+</body>
+</html>

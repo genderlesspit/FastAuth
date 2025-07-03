@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>User Dashboard • OAuth Server</title>
+    <meta name="description" content="Your Microsoft account information and recent activity">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="container">
+        <hgroup>
+            <h1>📊 User Dashboard</h1>
+            <p>Your Microsoft account information and recent activity</p>
+        </hgroup>
+        <nav>
+            <ul>
+                <li><a href="/" role="button" class="secondary">🏠 Home</a></li>
+                <li><a href="/logout" role="button" class="outline">🚪 Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- ./ Header -->
+
+    <!-- Main -->
+    <main class="container">
+        <!-- User Info Header -->
+        <article>
+            <header>
+                <h2>👤 {{ user_display_name }}</h2>
+                <p>{{ user_email }}</p>
+            </header>
+            <div class="grid">
+                <div>
+                    <strong>Display Name:</strong> {{ user_display_name }}
+                </div>
+                <div>
+                    <strong>Email:</strong> {{ user_email }}
+                </div>
+                <div>
+                    <strong>Status:</strong> <mark>Active Session</mark>
+                </div>
+            </div>
+        </article>
+
+        <!-- Quick Actions -->
+        <section>
+            <h3>🚀 Quick Actions</h3>
+            <div class="grid">
+                <a href="/profile" role="button" class="secondary">👤 Profile JSON</a>
+                <a href="/emails" role="button" class="secondary">📧 Emails JSON</a>
+                <a href="/files" role="button" class="secondary">📁 Files JSON</a>
+            </div>
+        </section>
+
+        <!-- Data Sections -->
+        <section>
+            <!-- Profile Information -->
+            <article>
+                <header>
+                    <h3>👤 Profile Information</h3>
+                </header>
+                <details>
+                    <summary>View Profile Data</summary>
+                    <pre><code>{{ profile_json }}</code></pre>
+                </details>
+            </article>
+
+            <!-- Recent Emails -->
+            <article>
+                <header>
+                    <h3>📧 Recent Emails</h3>
+                </header>
+                <details>
+                    <summary>View Email Data</summary>
+                    <pre><code>{{ emails_json }}</code></pre>
+                </details>
+            </article>
+
+            <!-- Files & Documents -->
+            <article>
+                <header>
+                    <h3>📁 Files & Documents</h3>
+                </header>
+                <details>
+                    <summary>View Files Data</summary>
+                    <pre><code>{{ files_json }}</code></pre>
+                </details>
+            </article>
+        </section>
+
+        <!-- API Endpoints -->
+        <section>
+            <h3>🔗 API Endpoints</h3>
+            <div class="overflow-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Endpoint</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">/profile</th>
+                            <td>Get user profile information</td>
+                            <td><a href="/profile" role="button" class="outline">View</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">/emails</th>
+                            <td>Get user's recent emails</td>
+                            <td><a href="/emails" role="button" class="outline">View</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">/files</th>
+                            <td>Get user's OneDrive files</td>
+                            <td><a href="/files" role="button" class="outline">View</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">/debug</th>
+                            <td>Debug server information</td>
+                            <td><a href="/debug" role="button" class="outline">View</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Session Info -->
+        <article>
+            <header>
+                <h3>🔒 Session Information</h3>
+            </header>
+            <div class="grid">
+                <div>
+                    <strong>Authentication Method:</strong> OAuth 2.0 with PKCE
+                </div>
+                <div>
+                    <strong>Tenant Type:</strong> Multi-Tenant
+                </div>
+                <div>
+                    <strong>Session Started:</strong> <span id="session-time"></span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="/" role="button" class="outline">🏠 Home</a></li>
+                <li><a href="/profile" role="button" class="outline secondary">👤 Profile</a></li>
+                <li><a href="/emails" role="button" class="outline secondary">📧 Emails</a></li>
+                <li><a href="/files" role="button" class="outline secondary">📁 Files</a></li>
+                <li><a href="/logout" role="button" class="outline contrast">🚪 Logout</a></li>
+            </ul>
+        </nav>
+    </main>
+    <!-- ./ Main -->
+
+    <!-- Footer -->
+    <footer class="container">
+        <small>
+            Dashboard powered by Microsoft Graph API •
+            <a href="/profile">Profile</a> •
+            <a href="/emails">Emails</a> •
+            <a href="/files">Files</a> •
+            <a href="/logout">Logout</a>
+        </small>
+    </footer>
+    <!-- ./ Footer -->
+
+    <script>
+        // Set session start time
+        document.getElementById('session-time').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>

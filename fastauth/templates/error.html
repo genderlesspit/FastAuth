@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Authentication Error • OAuth Server</title>
+    <meta name="description" content="There was an issue with your authentication request">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="container">
+        <hgroup>
+            <h1>❌ Authentication Failed</h1>
+            <p>There was an issue with your authentication request</p>
+        </hgroup>
+        <nav>
+            <ul>
+                <li><a href="/" role="button" class="secondary">🏠 Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- ./ Header -->
+
+    <!-- Main -->
+    <main class="container">
+        <!-- Error Message -->
+        <article>
+            <header>
+                <h2>⚠️ Authentication Error</h2>
+            </header>
+            <p><strong>Error:</strong> {{ error_message }}</p>
+            {% if error_description %}
+            <p><strong>Description:</strong> {{ error_description }}</p>
+            {% endif %}
+        </article>
+
+        <!-- Troubleshooting -->
+        <div class="grid">
+            <article>
+                <header>
+                    <h3>🔧 Common Solutions</h3>
+                </header>
+                <ul>
+                    <li>Check your internet connection</li>
+                    <li>Verify your Microsoft account credentials</li>
+                    <li>Clear browser cache and cookies</li>
+                    <li>Try using an incognito/private browser window</li>
+                    <li>Disable browser extensions temporarily</li>
+                </ul>
+            </article>
+
+            <article>
+                <header>
+                    <h3>🆘 Need Help?</h3>
+                </header>
+                <ul>
+                    <li>Contact your system administrator</li>
+                    <li>Check if admin consent is required</li>
+                    <li>Verify application permissions</li>
+                    <li>Review debug information</li>
+                    <li>Check server logs</li>
+                </ul>
+            </article>
+        </div>
+
+        <!-- Possible Causes -->
+        <article>
+            <header>
+                <h3>🔍 Possible Causes</h3>
+            </header>
+            <details>
+                <summary>Authentication Issues</summary>
+                <ul>
+                    <li>Invalid credentials or expired password</li>
+                    <li>Account locked or disabled</li>
+                    <li>Multi-factor authentication required</li>
+                    <li>Conditional access policies blocking access</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Application Issues</summary>
+                <ul>
+                    <li>Application not properly registered</li>
+                    <li>Incorrect redirect URI configuration</li>
+                    <li>Missing or invalid client ID</li>
+                    <li>Insufficient application permissions</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Network Issues</summary>
+                <ul>
+                    <li>Firewall blocking OAuth endpoints</li>
+                    <li>Corporate proxy interfering</li>
+                    <li>DNS resolution problems</li>
+                    <li>Network connectivity issues</li>
+                </ul>
+            </details>
+        </article>
+
+        <!-- Actions -->
+        <section>
+            <h3>🚀 What to do next?</h3>
+            <div class="grid">
+                <a href="/" role="button">🔄 Try Again</a>
+                <a href="/admin-consent" role="button" class="secondary">👨‍💼 Admin Consent</a>
+                <a href="/debug" role="button" class="outline">🔧 Debug Info</a>
+            </div>
+        </section>
+
+        <!-- Additional Help -->
+        <article>
+            <header>
+                <h3>📞 Still Need Help?</h3>
+            </header>
+            <p>
+                If you continue to experience issues, please contact your system administrator
+                or IT support team. Include the error message and any debug information when
+                reporting the issue.
+            </p>
+            <blockquote>
+                <strong>Error Code:</strong> {{ error_message }}<br>
+                <strong>Timestamp:</strong> <span id="timestamp"></span>
+            </blockquote>
+        </article>
+    </main>
+    <!-- ./ Main -->
+
+    <!-- Footer -->
+    <footer class="container">
+        <small>
+            If the problem persists, please contact support •
+            <a href="/">Try Again</a> •
+            <a href="/debug">Debug Info</a>
+        </small>
+    </footer>
+    <!-- ./ Footer -->
+
+    <script>
+        // Set current timestamp
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>

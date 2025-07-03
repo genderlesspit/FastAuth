@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Authentication Successful • OAuth Server</title>
+    <meta name="description" content="You've been successfully authenticated">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="container">
+        <hgroup>
+            <h1>🎉 Authentication Successful!</h1>
+            <p>You've been securely authenticated with Microsoft Identity</p>
+        </hgroup>
+        <nav>
+            <ul>
+                <li><a href="/logout" role="button" class="outline">🚪 Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- ./ Header -->
+
+    <!-- Main -->
+    <main class="container">
+        <!-- Success Message -->
+        <article>
+            <header>
+                <h2>✅ Welcome!</h2>
+            </header>
+            <p>Your multi-tenant OAuth authentication was successful.</p>
+        </article>
+
+        <!-- User Information -->
+        <article>
+            <header>
+                <h3>👤 User Information</h3>
+            </header>
+            <div class="grid">
+                <div>
+                    <strong>Name:</strong> {{ user_display_name }}
+                </div>
+                <div>
+                    <strong>Email:</strong> {{ user_email }}
+                </div>
+            </div>
+        </article>
+
+        <!-- Token Information -->
+        <div class="grid">
+            <article>
+                <header>
+                    <h3>🔑 Token Information</h3>
+                </header>
+                <ul>
+                    <li><strong>Expires in:</strong> {{ expires_in }} seconds</li>
+                    <li><strong>Scope:</strong> {{ scope }}</li>
+                    <li><strong>Refresh Token:</strong>
+                        {% if refresh_token %}
+                            <mark>Available</mark>
+                        {% else %}
+                            <mark>Not Available</mark>
+                        {% endif %}
+                    </li>
+                </ul>
+            </article>
+
+            <article>
+                <header>
+                    <h3>🛡️ Security Details</h3>
+                </header>
+                <ul>
+                    <li><strong>Method:</strong> PKCE + OAuth 2.0</li>
+                    <li><strong>Tenant:</strong> Multi-Tenant</li>
+                    <li><strong>Status:</strong> <mark>Active</mark></li>
+                </ul>
+            </article>
+        </div>
+
+        <!-- Available Actions -->
+        <section>
+            <h3>📊 Available Actions</h3>
+            <div class="grid">
+                <a href="/dashboard" role="button">📊 View Dashboard</a>
+                <a href="/profile" role="button" class="secondary">👤 Profile</a>
+                <a href="/emails" role="button" class="secondary">📧 Emails</a>
+                <a href="/files" role="button" class="secondary">📁 Files</a>
+            </div>
+        </section>
+
+        <!-- Quick Navigation -->
+        <nav>
+            <ul>
+                <li><a href="/dashboard" role="button" class="outline">📊 Go to Dashboard</a></li>
+                <li><a href="/logout" role="button" class="outline contrast">🚪 Logout</a></li>
+            </ul>
+        </nav>
+    </main>
+    <!-- ./ Main -->
+
+    <!-- Footer -->
+    <footer class="container">
+        <small>
+            Session secured with Microsoft Identity Platform •
+            <a href="/dashboard">Dashboard</a> •
+            <a href="/logout">Logout</a>
+        </small>
+    </footer>
+    <!-- ./ Footer -->
+</body>
+</html>
